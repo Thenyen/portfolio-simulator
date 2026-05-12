@@ -1,3 +1,6 @@
+import pandas as pd
+
+
 def buy_and_hold(df):
     start_price = df.iloc[0].item()
     end_price = df.iloc[-1].item()
@@ -8,4 +11,25 @@ def buy_and_hold(df):
         "startkurs": round(start_price, 2),
         "endkurs": round(end_price, 2),
         "rendite": round(total_return, 2)
+    }
+
+
+def moving_average(df, short=50, long=200):
+    prices = df.squeeze().astype(float)
+
+    data = pd.DataFrame()
+    data["close"] = prices
+    data["short_ma"] = prices.rolling(window=short).mean()
+    data["long_ma"] = prices.rolling(window=long).mean()
+
+    data["signal"] = 0
+    data.loc[data["short_ma"] > data["long_ma"], "signal"] = 1
+
+    data["rendite"] = data["close"].pct_change()
+    data["strategie_rendite"] = data["signal"].shift(1) * data["rendite"]
+
+    total_return = float((1 + data["strategie_rendite"]).prod() - 1)
+    return {
+        "strategie": "Moving Average (50/200)",
+        "rendite": round(total_return * 100, 2)
     }
