@@ -27,13 +27,14 @@ Open `http://localhost:8050` in your browser.
 **Moving Average (50/200)** — buys when the 50-day average crosses above the 200-day average (Golden Cross), sells on the reverse (Death Cross).
 
 ## Project Structure
-portfolio-simulator/
-├── data/
-│   ├── fetch.py       # Downloads stock data via yfinance
-│   └── strategy.py    # Trading strategy implementations
-├── app.py             # Dash dashboard
-├── main.py            # Quick CLI output
-└── requirements.txt
+
+    portfolio-simulator/
+    ├── data/
+    │   ├── fetch.py       # Downloads stock data via yfinance
+    │   └── strategy.py    # Trading strategy implementations
+    ├── app.py             # Dash dashboard
+    ├── main.py            # Quick CLI output
+    └── requirements.txt
 
 ## Roadmap
 - [ ] Sharpe Ratio & Max Drawdown
