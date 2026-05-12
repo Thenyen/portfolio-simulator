@@ -8,7 +8,7 @@ A Python-based backtesting tool to compare stock trading strategies on historica
 - Fetches real historical stock data via Yahoo Finance
 - Implements and compares multiple trading strategies
 - Interactive web dashboard built with Plotly Dash
-- Calculates key performance metrics (return, moving averages)
+- Calculates key performance metrics (return, moving averages, Sharpe Ratio)
 
 ## Quickstart
 
@@ -26,6 +26,8 @@ Open `http://localhost:8050` in your browser.
 
 **Moving Average (50/200)** — buys when the 50-day average crosses above the 200-day average (Golden Cross), sells on the reverse (Death Cross).
 
+**Sharpe Ratio** — measures risk-adjusted return. Divides the average daily return by its standard deviation, annualized over 252 trading days. A ratio above 1.0 is considered good, above 2.0 excellent.
+
 ## Project Structure
 
     portfolio-simulator/
@@ -37,7 +39,8 @@ Open `http://localhost:8050` in your browser.
     └── requirements.txt
 
 ## Roadmap
-- [ ] Sharpe Ratio & Max Drawdown
+- [x] Sharpe Ratio
+- [ ] Max Drawdown
 - [ ] Support for multiple tickers
 - [ ] Date range selector in dashboard
 - [ ] Monte Carlo simulation
