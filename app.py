@@ -2,7 +2,7 @@ from dash import Dash, dcc, html
 import plotly.graph_objects as go
 import pandas as pd
 from data.fetch import fetch_data
-from data.strategy import buy_and_hold, moving_average
+from data.strategy import buy_and_hold, moving_average, sharpe_ratio
 
 app = Dash(__name__)
 
@@ -11,6 +11,7 @@ prices = df.squeeze().astype(float)
 
 bah = buy_and_hold(df)
 ma = moving_average(df)
+sharpe = sharpe_ratio(df)
 
 fig = go.Figure()
 fig.add_trace(go.Scatter(x=prices.index, y=prices.values, name="AAPL Kurs"))
@@ -28,6 +29,10 @@ app.layout = html.Div([
         html.Div([
             html.H3("Moving Average"),
             html.P(f"Rendite: {ma['rendite']} %")
+        ], style={"border": "1px solid #ccc", "padding": "20px", "width": "200px"}),
+        html.Div([
+            html.H3("Sharpe Ratio"),
+            html.P(f"Sharpe: {sharpe['sharpe']}")
         ], style={"border": "1px solid #ccc", "padding": "20px", "width": "200px"})
     ], style={"display": "flex", "gap": "20px", "margin": "20px 0"}),
     dcc.Graph(figure=fig)

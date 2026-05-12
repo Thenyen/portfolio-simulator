@@ -33,3 +33,18 @@ def moving_average(df, short=50, long=200):
         "strategie": "Moving Average (50/200)",
         "rendite": round(total_return * 100, 2)
     }
+
+
+def sharpe_ratio(df):
+    prices = df.squeeze().astype(float)
+    daily_returns = prices.pct_change().dropna()
+
+    mean_return = daily_returns.mean()
+    std_return = daily_returns.std()
+
+    sharpe = (mean_return / std_return) * (252 ** 0.5)
+
+    return {
+        "strategie": "Sharpe Ratio",
+        "sharpe": round(float(sharpe), 2)
+    }
