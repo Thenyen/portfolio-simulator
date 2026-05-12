@@ -1,2 +1,2 @@
-# portfolio-simulator-
+# portfolio-simulator
 Backtesting tool for stock portfolio strategies
