@@ -1,7 +1,7 @@
 # Portfolio Simulator
 A Python-based backtesting tool to compare stock trading strategies on historical data.
 
-<img width="703" height="650" alt="image" src="https://github.com/user-attachments/assets/c13d4417-90b1-4560-8cda-25ffd56e185a" />
+<img width="765" height="709" alt="image" src="https://github.com/user-attachments/assets/bd18763a-17c2-435e-a93d-64d0070d3ced" />
 
 
 
@@ -9,7 +9,7 @@ A Python-based backtesting tool to compare stock trading strategies on historica
 - Fetches real historical stock data via Yahoo Finance
 - Implements and compares multiple trading strategies
 - Interactive web dashboard built with Plotly Dash
-- Calculates key performance metrics (return, moving averages, Sharpe Ratio)
+- Calculates key performance metrics (return, moving averages, Sharpe Ratio,     Max Drawdown)
 - Interactive ticker selection (AAPL, MSFT, SAP, AMZN)
 
 ## Quickstart
@@ -30,6 +30,9 @@ Open `http://localhost:8050` in your browser.
 
 **Sharpe Ratio** — measures risk-adjusted return. Divides the average daily return by its standard deviation, annualized over 252 trading days. A ratio above 1.0 is considered good, above 2.0 excellent.
 
+**Max Drawdown** - measures the largest peak-to-trough decline of a portfolio during the backtest period.
+A lower drawdown indicates lower downside risk.
+
 ## Project Structure
 
     portfolio-simulator/
@@ -42,7 +45,7 @@ Open `http://localhost:8050` in your browser.
 
 ## Roadmap
 - [x] Sharpe Ratio
-- [ ] Max Drawdown
+- [x] Max Drawdown
 - [x] Support for multiple tickers
 - [ ] Date range selector in dashboard
 - [ ] Monte Carlo simulation
