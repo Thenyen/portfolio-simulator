@@ -48,3 +48,17 @@ def sharpe_ratio(df):
         "strategie": "Sharpe Ratio",
         "sharpe": round(float(sharpe), 2)
     }
+
+
+def max_drawdown(df):
+    prices = df.squeeze().astype(float)
+
+    rolling_max = prices.cummax()
+    drawdown = (prices - rolling_max) / rolling_max * 100
+
+    max_dd = drawdown.min()
+
+    return {
+        "strategie": "Max Drawdown",
+        "max_drawdown": round(float(max_dd), 2)
+    }

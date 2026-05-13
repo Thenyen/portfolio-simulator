@@ -1,7 +1,7 @@
 from dash import Dash, dcc, html, Input, Output, callback
 import plotly.graph_objects as go
 from data.fetch import fetch_data
-from data.strategy import buy_and_hold, moving_average, sharpe_ratio
+from data.strategy import buy_and_hold, moving_average, sharpe_ratio, max_drawdown
 
 app = Dash(__name__)
 
@@ -34,6 +34,7 @@ def update_dashboard(ticker):
     bah = buy_and_hold(df)
     ma = moving_average(df)
     sharpe = sharpe_ratio(df)
+    dd = max_drawdown(df)
 
     metrics = [
         html.Div([
@@ -47,6 +48,10 @@ def update_dashboard(ticker):
         html.Div([
             html.H3("Sharpe Ratio"),
             html.P(f"Sharpe: {sharpe['sharpe']}")
+        ], style={"border": "1px solid #ccc", "padding": "20px", "width": "200px"}),
+        html.Div([
+            html.H3("Max Drawdown"),
+            html.P(f"Drawdown: {dd['max_drawdown']} %")
         ], style={"border": "1px solid #ccc", "padding": "20px", "width": "200px"})
     ]
 
