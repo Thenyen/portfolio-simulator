@@ -10,6 +10,7 @@ A Python-based backtesting tool to compare stock trading strategies on historica
 - Implements and compares multiple trading strategies
 - Interactive web dashboard built with Plotly Dash
 - Calculates key performance metrics (return, moving averages, Sharpe Ratio)
+- Interactive ticker selection (AAPL, MSFT, SAP, AMZN)
 
 ## Quickstart
 
@@ -42,6 +43,6 @@ Open `http://localhost:8050` in your browser.
 ## Roadmap
 - [x] Sharpe Ratio
 - [ ] Max Drawdown
-- [ ] Support for multiple tickers
+- [x] Support for multiple tickers
 - [ ] Date range selector in dashboard
 - [ ] Monte Carlo simulation
