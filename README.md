@@ -1,7 +1,7 @@
 # Portfolio Simulator
 A Python-based backtesting tool to compare stock trading strategies on historical data.
 
-<img width="765" height="709" alt="image" src="https://github.com/user-attachments/assets/bd18763a-17c2-435e-a93d-64d0070d3ced" />
+<img width="721" height="721" alt="image" src="https://github.com/user-attachments/assets/300e3495-b542-4d50-bdf7-f8db1a0171ea" />
 
 
 
