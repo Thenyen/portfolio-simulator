@@ -7,17 +7,31 @@ app = Dash(__name__)
 
 app.layout = html.Div([
     html.H1("Portfolio Simulator"),
-    dcc.Dropdown(
-        id="ticker-dropdown",
-        options=[
-            {"label": "Apple (AAPL)", "value": "AAPL"},
-            {"label": "Microsoft (MSFT)", "value": "MSFT"},
-            {"label": "SAP (SAP.DE)", "value": "SAP.DE"},
-            {"label": "Amazon (AMZN)", "value": "AMZN"},
-        ],
-        value="AAPL",
-        style={"width": "300px", "margin": "20px 0"}
-    ),
+    html.Div([
+        dcc.Dropdown(
+            id="ticker-dropdown",
+            options=[
+                {"label": "Apple (AAPL)", "value": "AAPL"},
+                {"label": "Microsoft (MSFT)", "value": "MSFT"},
+                {"label": "SAP (SAP.DE)", "value": "SAP.DE"},
+                {"label": "Amazon (AMZN)", "value": "AMZN"},
+            ],
+            value="AAPL",
+            style={"width": "300px"}
+        ),
+        dcc.Dropdown(
+            id="start-year",
+            options=[{"label": str(y), "value": str(y)} for y in range(2015, 2024)],
+            value="2020",
+            style={"width": "120px"}
+        ),
+        dcc.Dropdown(
+            id="end-year",
+            options=[{"label": str(y), "value": str(y)} for y in range(2016, 2025)],
+            value="2024",
+            style={"width": "120px"}
+        ),
+    ], style={"display": "flex", "gap": "20px", "margin": "20px 0", "align-items": "center"}),
     html.Div(id="metrics", style={"display": "flex", "gap": "20px", "margin": "20px 0"}),
     dcc.Graph(id="price-chart")
 ])
@@ -25,10 +39,15 @@ app.layout = html.Div([
 @callback(
     Output("metrics", "children"),
     Output("price-chart", "figure"),
-    Input("ticker-dropdown", "value")
+    Input("ticker-dropdown", "value"),
+    Input("start-year", "value"),
+    Input("end-year", "value")
 )
-def update_dashboard(ticker):
-    df = fetch_data(ticker, "2020-01-01", "2024-01-01")
+def update_dashboard(ticker, start_year, end_year):
+    start = f"{start_year}-01-01"
+    end = f"{end_year}-01-01"
+
+    df = fetch_data(ticker, start, end)
     prices = df.squeeze().astype(float)
 
     bah = buy_and_hold(df)
