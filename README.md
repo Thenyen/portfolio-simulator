@@ -11,7 +11,8 @@ A Python-based backtesting tool to compare stock trading strategies on historica
 - Interactive web dashboard built with Plotly Dash
 - Calculates key performance metrics (return, moving averages, Sharpe Ratio,     Max Drawdown)
 - Interactive ticker selection (AAPL, MSFT, SAP, AMZN)
-- Date range selector in dashboard - customize the backtest period 
+- Date range selector in dashboard - customize the backtest period
+- CAGR (Compound Annual Growth Rate) for annualized return comparison
 
 ## Quickstart
 
@@ -34,6 +35,8 @@ Open `http://localhost:8050` in your browser.
 **Max Drawdown** - measures the largest peak-to-trough decline of a portfolio during the backtest period.
 A lower drawdown indicates lower downside risk.
 
+**CAGR** — measures the mean annual growth rate over the selected time period. More meaningful than total return alone as it accounts for the length of the investment.
+
 ## Project Structure
 
     portfolio-simulator/
@@ -55,5 +58,5 @@ A lower drawdown indicates lower downside risk.
 - [ ] Export results as CSV
 - [ ] Improve dashboard UI (colors, layout)
 - [x] Add more stocks (DAX, NASDAQ, global indices)
-- [ ] Annualized return (CAGR)
+- [x] Annualized return (CAGR)
 - [ ] Portfolio weight allocation
