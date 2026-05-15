@@ -62,3 +62,19 @@ def max_drawdown(df):
         "strategie": "Max Drawdown",
         "max_drawdown": round(float(max_dd), 2)
     }
+
+
+def cagr(df, start, end):
+    prices = df.squeeze().astype(float)
+
+    start_price = prices.iloc[0]
+    end_price = prices.iloc[-1]
+
+    years = (pd.to_datetime(end) - pd.to_datetime(start)).days / 365.25
+
+    cagr_value = ((end_price / start_price) ** (1 / years) - 1) * 100
+
+    return {
+        "strategie": "CAGR",
+        "cagr": round(float(cagr_value), 2)
+    }
