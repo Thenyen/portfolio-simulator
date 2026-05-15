@@ -49,7 +49,7 @@ A lower drawdown indicates lower downside risk.
 - [x] Max Drawdown
 - [x] Support for multiple tickers
 - [x] Date range selector in dashboard
-- [ ] Benchmark comparison (S&P 500)
+- [x] Benchmark comparison (S&P 500)
 - [ ] Multi-stock portfolio (combine multiple tickers)
 - [ ] Monte Carlo simulation
 - [ ] Export results as CSV
