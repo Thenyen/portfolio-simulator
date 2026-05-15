@@ -54,6 +54,6 @@ A lower drawdown indicates lower downside risk.
 - [ ] Monte Carlo simulation
 - [ ] Export results as CSV
 - [ ] Improve dashboard UI (colors, layout)
-- [ ] Add more stocks (DAX, NASDAQ, global indices)
+- [x] Add more stocks (DAX, NASDAQ, global indices)
 - [ ] Annualized return (CAGR)
 - [ ] Portfolio weight allocation
