@@ -1,7 +1,10 @@
 # Portfolio Simulator
 A Python-based backtesting tool to compare stock trading strategies on historical data.
 
-<img width="721" height="721" alt="image" src="https://github.com/user-attachments/assets/300e3495-b542-4d50-bdf7-f8db1a0171ea" />
+<img width="721" height="721" alt="image" src="https://github.com/user-attachments/assets/7f2bda92-f0d4-40e2-a399-86485353ffe4" />
+<img width="721" height="522" alt="image" src="https://github.com/user-attachments/assets/cf0be2de-9580-48bb-aad6-e4cf59948c2a" />
+
+
 
 
 
@@ -9,10 +12,11 @@ A Python-based backtesting tool to compare stock trading strategies on historica
 - Fetches real historical stock data via Yahoo Finance
 - Implements and compares multiple trading strategies
 - Interactive web dashboard built with Plotly Dash
-- Calculates key performance metrics (return, moving averages, Sharpe Ratio,     Max Drawdown)
+- Calculates key performance metrics (return, moving averages, Sharpe Ratio, Max      Drawdown)
 - Interactive ticker selection (AAPL, MSFT, SAP, AMZN)
 - Date range selector in dashboard - customize the backtest period
 - CAGR (Compound Annual Growth Rate) for annualized return comparison
+- Monte Carlo simulation with 200 paths for 1-year price forecasting
 
 ## Quickstart
 
@@ -37,6 +41,8 @@ A lower drawdown indicates lower downside risk.
 
 **CAGR** — measures the mean annual growth rate over the selected time period. More meaningful than total return alone as it accounts for the length of the investment.
 
+**Monte Carlo Simulation** — uses historical daily return and volatility to simulate 200 possible price paths for the next trading year. Visualizes the range of possible outcomes based on past behavior.
+
 ## Project Structure
 
     portfolio-simulator/
@@ -53,8 +59,10 @@ A lower drawdown indicates lower downside risk.
 - [x] Support for multiple tickers
 - [x] Date range selector in dashboard
 - [x] Benchmark comparison (S&P 500)
+- [ ] Extend data range to 2026
 - [ ] Multi-stock portfolio (combine multiple tickers)
 - [x] Monte Carlo simulation
+- [ ] Monte Carlo: Simulation vs. Reality
 - [ ] Export results as CSV
 - [ ] Improve dashboard UI (colors, layout)
 - [x] Add more stocks (DAX, NASDAQ, global indices)
