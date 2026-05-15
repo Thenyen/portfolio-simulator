@@ -1,8 +1,7 @@
 from dash import Dash, dcc, html, Input, Output, callback
 import plotly.graph_objects as go
 from data.fetch import fetch_data, fetch_benchmark
-from data.strategy import buy_and_hold, moving_average, sharpe_ratio, max_drawdown, cagr
-
+from data.strategy import buy_and_hold, moving_average, sharpe_ratio, max_drawdown, cagr, monte_carlo
 app = Dash(__name__)
 
 app.layout = html.Div([
@@ -48,7 +47,9 @@ options=[
         ),
     ], style={"display": "flex", "gap": "20px", "margin": "20px 0", "align-items": "center"}),
     html.Div(id="metrics", style={"display": "flex", "gap": "20px", "margin": "20px 0"}),
-    dcc.Graph(id="price-chart")
+    dcc.Graph(id="price-chart"),
+    html.H2("Monte Carlo Simulation (1 Year Forecast)"),
+    dcc.Graph(id="monte-carlo-chart")
 ])
 
 @callback(
@@ -104,6 +105,39 @@ def update_dashboard(ticker, start_year, end_year):
     fig.update_layout(title=f"{ticker} vs S&P 500 (normalized to 100)", xaxis_title="Date", yaxis_title="Value (normalized)")
 
     return metrics, fig
+
+
+@callback(
+    Output("monte-carlo-chart", "figure"),
+    Input("ticker-dropdown", "value"),
+    Input("start-year", "value"),
+    Input("end-year", "value")
+)
+def update_monte_carlo(ticker, start_year, end_year):
+    start = f"{start_year}-01-01"
+    end = f"{end_year}-01-01"
+
+    df = fetch_data(ticker, start, end)
+    paths, last_price = monte_carlo(df)
+
+    fig = go.Figure()
+    for path in paths:
+        fig.add_trace(go.Scatter(
+            y=path,
+            mode="lines",
+            line=dict(width=0.5, color="blue"),
+            opacity=0.1,
+            showlegend=False
+        ))
+
+    fig.add_hline(y=last_price, line_dash="dash", line_color="red", annotation_text="Current Price")
+    fig.update_layout(
+        title=f"{ticker} — Monte Carlo Simulation (200 paths, 1 year)",
+        xaxis_title="Days",
+        yaxis_title="Price ($)"
+    )
+
+    return fig
 
 if __name__ == "__main__":
     app.run(debug=True)

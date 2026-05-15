@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 
 def buy_and_hold(df):
@@ -78,3 +79,23 @@ def cagr(df, start, end):
         "strategie": "CAGR",
         "cagr": round(float(cagr_value), 2)
     }
+
+
+def monte_carlo(df, days=252, simulations=200):
+    prices = df.squeeze().astype(float)
+
+    daily_returns = prices.pct_change().dropna()
+    mean = daily_returns.mean()
+    std = daily_returns.std()
+
+    last_price = prices.iloc[-1]
+    results = []
+
+    for _ in range(simulations):
+        path = [last_price]
+        for _ in range(days):
+            change = path[-1] * (1 + np.random.normal(mean, std))
+            path.append(change)
+        results.append(path)
+
+    return results, last_price
