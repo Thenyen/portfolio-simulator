@@ -54,7 +54,7 @@ A lower drawdown indicates lower downside risk.
 - [x] Date range selector in dashboard
 - [x] Benchmark comparison (S&P 500)
 - [ ] Multi-stock portfolio (combine multiple tickers)
-- [ ] Monte Carlo simulation
+- [x] Monte Carlo simulation
 - [ ] Export results as CSV
 - [ ] Improve dashboard UI (colors, layout)
 - [x] Add more stocks (DAX, NASDAQ, global indices)
