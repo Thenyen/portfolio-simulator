@@ -10,12 +10,27 @@ app.layout = html.Div([
     html.Div([
         dcc.Dropdown(
             id="ticker-dropdown",
-            options=[
-                {"label": "Apple (AAPL)", "value": "AAPL"},
-                {"label": "Microsoft (MSFT)", "value": "MSFT"},
-                {"label": "SAP (SAP.DE)", "value": "SAP.DE"},
-                {"label": "Amazon (AMZN)", "value": "AMZN"},
-            ],
+options=[
+    # US Tech
+    {"label": "Apple (AAPL)", "value": "AAPL"},
+    {"label": "Microsoft (MSFT)", "value": "MSFT"},
+    {"label": "Amazon (AMZN)", "value": "AMZN"},
+    {"label": "Google (GOOGL)", "value": "GOOGL"},
+    {"label": "Meta (META)", "value": "META"},
+    {"label": "NVIDIA (NVDA)", "value": "NVDA"},
+    {"label": "Tesla (TSLA)", "value": "TSLA"},
+    # German DAX
+    {"label": "SAP (SAP.DE)", "value": "SAP.DE"},
+    {"label": "Siemens (SIE.DE)", "value": "SIE.DE"},
+    {"label": "Volkswagen (VOW3.DE)", "value": "VOW3.DE"},
+    {"label": "Allianz (ALV.DE)", "value": "ALV.DE"},
+    {"label": "Deutsche Bank (DBK.DE)", "value": "DBK.DE"},
+    {"label": "BMW (BMW.DE)", "value": "BMW.DE"},
+    # Indices
+    {"label": "S&P 500 ETF (SPY)", "value": "SPY"},
+    {"label": "NASDAQ ETF (QQQ)", "value": "QQQ"},
+    {"label": "DAX ETF (EXS1.DE)", "value": "EXS1.DE"},
+],
             value="AAPL",
             style={"width": "300px"}
         ),
