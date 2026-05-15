@@ -1,6 +1,6 @@
 from dash import Dash, dcc, html, Input, Output, callback
 import plotly.graph_objects as go
-from data.fetch import fetch_data
+from data.fetch import fetch_data, fetch_benchmark
 from data.strategy import buy_and_hold, moving_average, sharpe_ratio, max_drawdown
 
 app = Dash(__name__)
@@ -49,6 +49,8 @@ def update_dashboard(ticker, start_year, end_year):
 
     df = fetch_data(ticker, start, end)
     prices = df.squeeze().astype(float)
+    benchmark = fetch_benchmark(start, end)
+    prices_normalized = prices / prices.iloc[0] * 100
 
     bah = buy_and_hold(df)
     ma = moving_average(df)
@@ -75,10 +77,11 @@ def update_dashboard(ticker, start_year, end_year):
     ]
 
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=prices.index, y=prices.values, name=f"{ticker} Kurs"))
-    fig.add_trace(go.Scatter(x=prices.index, y=prices.rolling(50).mean(), name="50-Tage MA"))
-    fig.add_trace(go.Scatter(x=prices.index, y=prices.rolling(200).mean(), name="200-Tage MA"))
-    fig.update_layout(title=f"{ticker} Portfolio Simulator", xaxis_title="Date", yaxis_title="Price ($)")
+    fig.add_trace(go.Scatter(x=prices_normalized.index, y=prices_normalized.values, name=f"{ticker}"))
+    fig.add_trace(go.Scatter(x=benchmark.index, y=benchmark.values, name="S&P 500", line=dict(dash="dash", color="gray")))
+    fig.add_trace(go.Scatter(x=prices_normalized.index, y=prices_normalized.rolling(50).mean(), name="50-Tage MA", visible="legendonly"))
+    fig.add_trace(go.Scatter(x=prices_normalized.index, y=prices_normalized.rolling(200).mean(), name="200-Tage MA", visible="legendonly"))
+    fig.update_layout(title=f"{ticker} vs S&P 500 (normalized to 100)", xaxis_title="Date", yaxis_title="Value (normalized)")
 
     return metrics, fig
 
